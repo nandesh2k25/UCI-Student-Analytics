@@ -1,30 +1,55 @@
-Student Performance Analysis & Prediction
-📌 Project Overview
-This project explores the factors influencing student achievement in secondary education at two Portuguese schools. Using a dataset consisting of student grades, demographic information, and social/school-related features, I implemented [Regression/Classification] models to predict the final grade (G3) in Mathematics and Portuguese subjects.
+# 🎓 Student Performance Analysis & Grade Prediction
 
-📊 Dataset Information
-Source: UCI Machine Learning Repository (Student Performance Dataset)
+This project investigates the social, demographic, and academic factors that influence student success in secondary education. Using the **UCI Student Performance Dataset**, I performed an end-to-end analysis—from deep data exploration and feature engineering to building predictive models for final grades.
 
-Instances: 649
+## 📌 Project Objectives
 
-Features: 30 (including age, family size, study time, alcohol consumption, and previous grades)
+* **Identify Key Influencers:** Determine which factors (e.g., parental education, study time, alcohol consumption) most strongly correlate with academic success.
+* **Predict Success (Classification):** Build a model to predict whether a student will pass (G3  10) or fail.
+* **Predict Exact Grades (Regression):** Use multiple linear regression to predict a student's specific final score (0–20).
 
-Target Variables: G1 (1st period), G2 (2nd period), and G3 (Final Grade).
+## 📊 Dataset Overview
 
-🛠️ Key Tasks
-Exploratory Data Analysis (EDA): Investigating correlations between social factors (like alcohol consumption or family status) and academic performance.
+The data encompasses student achievement in two subjects: **Mathematics** and **Portuguese**.
 
-Data Preprocessing: Handling categorical variables through one-hot encoding and scaling numerical features.
+* **Features:** 30 attributes including school, sex, age, address, family size, parental job, study time, failures, and social activities.
+* **Target Variables:** G1 (1st period), G2 (2nd period), and **G3 (Final Grade)**.
 
-Predictive Modeling: Training and evaluating models such as [Linear Regression, Random Forest, or KNN] to predict G3.
+## 🛠️ Analysis Workflow
 
-Feature Importance: Determining which factors (e.g., previous class failures or study time) have the highest impact on success.
+### 1. Exploratory Data Analysis (EDA)
 
-🚀 Technologies Used
-Python (Pandas, NumPy)
+* Analyzed the **Mathematics vs. Portuguese** distributions, noting that Portuguese grades generally have a higher mean and lower standard deviation.
+* Used **Box Plots** and **Categorical Analysis** to evaluate features.
+* *Insight:* Female students performed better in Portuguese, while male students performed better in Math.
+* *Insight:* Higher parental education level (Medu/Fedu) correlates strongly with higher student grades.
 
-Visualizations: Seaborn, Matplotlib, Plotly
 
-Machine Learning: Scikit-learn
 
-API: ucimlrepo for direct data fetching
+### 2. Feature Engineering & Selection
+
+* **Banding:** Grouped the `absences` feature into bands to reduce noise and reveal the clear downward trend in grades as absences increase.
+* **Feature Removal:** Dropped statistically insignificant features (like `famsize` and `Pstatus`) to improve model efficiency.
+* **Mapping:** Converted categorical text data into numerical formats (Label Encoding) for model compatibility.
+
+### 3. Machine Learning Models
+
+* **Logistic Regression:** Achieved ~**89% accuracy** in predicting Pass/Fail outcomes for Math and ~**92%** for Portuguese.
+* **Multiple Linear Regression:** Predicted exact G3 scores.
+* Initially impacted by "Zero-Grade" outliers (students who missed the final exam).
+* After removing outliers, the model achieved an  of **0.92**, significantly reducing the Mean Squared Error (MSE).
+
+
+
+## 🚀 Key Technologies
+
+* **Python:** Core programming language.
+* **Pandas & NumPy:** Data manipulation and cleaning.
+* **Seaborn & Matplotlib:** Advanced data visualization.
+* **Scikit-Learn:** Machine learning (Logistic Regression, Linear Regression, Train-Test Split).
+
+## 📈 Conclusion
+
+The analysis proves that while socio-economic factors matter, **previous academic performance (G1 & G2)** and **school attendance** are the strongest predictors of a student's final grade.
+
+---
